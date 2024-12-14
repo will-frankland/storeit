@@ -7,6 +7,7 @@ import { parseStringify } from "../utils";
 
 const getUserByEmail = async (email: string) => {
   const { databases } = await createAdminClient();
+
   const result = await databases.listDocuments(
     appwriteConfig.databaseId,
     appwriteConfig.usersCollectionId,
@@ -38,8 +39,10 @@ export const createAccount = async ({
   email: string;
 }) => {
   const existingUser = await getUserByEmail(email);
+
   const accountId = await sendEmailOTP(email);
-  if (!accountId) throw new Error("Failed to send OTP");
+  if (!accountId) throw new Error("Failed to send an OTP");
+
   if (!existingUser) {
     const { databases } = await createAdminClient();
     await databases.createDocument(
