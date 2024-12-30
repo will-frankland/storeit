@@ -2,7 +2,6 @@
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
@@ -25,7 +24,7 @@ import { useState } from "react";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { usePathname } from "next/navigation";
-import { renameFile } from "@/lib/actions/file.actions";
+import { renameFile, updateFileUsers } from "@/lib/actions/file.actions";
 import { FileDetails, ShareInput } from "./ActionsModalContent";
 
 const ActionDropdown = ({ file }: { file: Models.Document }) => {
@@ -60,7 +59,7 @@ const ActionDropdown = ({ file }: { file: Models.Document }) => {
           extension: file.extension,
           path,
         }),
-      share: () => console.log("share"),
+      share: () => updateFileUsers({ fileId: file.$id, emails, path }),
       delete: () => console.log("delete"),
     };
 

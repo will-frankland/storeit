@@ -59,7 +59,7 @@ export const ShareInput = ({ file, onInputChange, onRemove }: Props) => {
         />
         <div className="pt-4 ">
           <div className="flex justify-between">
-            <p className="subtitle-2 text-light-100">Share width</p>
+            <p className="subtitle-2 text-light-100">Shared with:</p>
             <p className="subtitle-2 text-light-200">
               {file.users.length} users
             </p>
@@ -71,7 +71,10 @@ export const ShareInput = ({ file, onInputChange, onRemove }: Props) => {
                 className="flex items-center justify-between gap-2"
               >
                 <p className="subtitle-2">{email}</p>
-                <Button onClick={() => onRemove(email)}>
+                <Button
+                  onClick={() => onRemove(email)}
+                  className="share-remove-user"
+                >
                   <Image
                     src="/assets/icons/remove.svg"
                     alt="remove"
